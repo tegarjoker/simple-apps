@@ -20,19 +20,10 @@ app.get('/app2', (req, res) => {
   res.send('Hello this App 2!')
 });
 
-app.get('/users', (req, res) => {
-  const sql = 'SELECT * FROM tb_data ORDER BY id DESC';
-
-  connection.query(sql, (error, results) => {
-    if (error) {
-      console.error('Database error:', error);
-      return res.status(500).json({
-        error: 'Gagal mengambil data users'
-      });
-    }
-
-    return res.status(200).json(results);
-  });
+app.get('/users', (req, res, next) => {
+  const sql = "SELECT * FROM tb_data ORDER BY id desc"
+  connection.query(sql,(error, fields) => {
+  })
 });
 
 app.listen(process.env.APP_PORT, () => {
